@@ -9,6 +9,7 @@ class UtsAnnissa2410910040019 extends StatefulWidget {
 
 class _UtsAnnissa2410910040019State extends State<UtsAnnissa2410910040019> {
   bool _showpassword = true;
+  final TextEditingController _passwordcontroller = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -87,14 +88,22 @@ class _UtsAnnissa2410910040019State extends State<UtsAnnissa2410910040019> {
               ),
               SizedBox(height: 8),
               TextField(
-                obscureText: true,
+              controller: _passwordcontroller,
+              obscureText: _showpassword,
                 decoration: InputDecoration(
                   hintText: 'Min. 8 characters',
-                  suffixIcon: Icon(
+                  suffixIcon: IconButton(
+                  onPressed: () {
+                    setState(() {
+                      _showpassword = !_showpassword;
+                    });
+                  },
+                  icon: Icon(
                     _showpassword
                         ? Icons.remove_red_eye
                         : Icons.visibility_off,
                   ),
+                ),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(10),
                   ),
@@ -120,7 +129,14 @@ class _UtsAnnissa2410910040019State extends State<UtsAnnissa2410910040019> {
                 width: double.infinity,
                 height: 50,
                 child: ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => MenuActivity(),
+                    ),
+                  );
+                },
                   style: ElevatedButton.styleFrom(
                     backgroundColor:  Color.fromARGB(255, 62, 90, 128),
                     shape: RoundedRectangleBorder(
